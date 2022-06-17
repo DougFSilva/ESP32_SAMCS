@@ -132,17 +132,6 @@ void WIEGAND::begin(bool GateA, bool GateB, bool GateC)
 
  void IRAM_ATTR WIEGAND:: ReadD0A ()
 {
-	//Serial.print("ReadD0A acionado");
-	//Serial.println(_bitCountA);
-	
-	/*if (_bitCountA>26){
-			
-		_bitCountA=0;
-		_cardTempA=0;
-		_cardTempHighA=0;
-		_GateActive=0;	
-			
-	}*/
 
 	_bitCountA++;				// Increament bit count for Interrupt connected to D0
 	if (_bitCountA>31)			// If bit count more than 31, process high bits
@@ -160,19 +149,8 @@ void WIEGAND::begin(bool GateA, bool GateB, bool GateC)
 
  void IRAM_ATTR WIEGAND:: ReadD1A()
 {
-	//Serial.print("ReadD1A acionado");
-	//Serial.println(_bitCountA);
 	_bitCountA ++;				// Increment bit count for Interrupt connected to D1
 	
-	/*if (_bitCountA>26){
-			
-		_lastWiegand=_sysTick;
-		_bitCountA=0;			
-		_cardTempA=0;
-		_cardTempHighA=0;
-		_GateActive=0;	
-			
-	}*/
 	
 	if (_bitCountA>31)			// If bit count more than 31, process high bits
 	{
@@ -192,18 +170,7 @@ void WIEGAND::begin(bool GateA, bool GateB, bool GateC)
 
 void IRAM_ATTR WIEGAND::ReadD0B ()
 {
-	//l.print("ReadD0B acionado");
-	//Serial.println(_bitCountB);
 	_bitCountB++;				// Increament bit count for Interrupt connected to D0
-	
-	/*if (_bitCountB>26){
-			
-		_bitCountB=0;
-		_cardTempB=0;
-		_cardTempHighB=0;
-		_GateActive=0;	
-			
-	}*/
 	
 	if (_bitCountB>31)			// If bit count more than 31, process high bits
 	{
@@ -220,18 +187,7 @@ void IRAM_ATTR WIEGAND::ReadD0B ()
 
 void IRAM_ATTR WIEGAND::ReadD1B()
 {
-	//Serial.print("ReadD1B acionado");
-	//Serial.println(_bitCountB);
 	_bitCountB ++;				// Increment bit count for Interrupt connected to D1
-	
-	/*if (_bitCountB>26){
-			
-		_bitCountB=0;
-		_cardTempB=0;
-		_cardTempHighB=0;
-		_GateActive=0;	
-			
-	}*/
 	
 	if (_bitCountB>31)			// If bit count more than 31, process high bits
 	{
@@ -506,7 +462,6 @@ bool WIEGAND::DoWiegandConversion ()
 		return false;
 		}
 		else
-			//Serial.print("Laço: Limpa variavel");
 			_lastWiegand=_sysTick; // Reinicia os bits caso uma leitura errada(Solução dos problemas. FIM)
 			_bitCountA=0;			
 			_cardTempA=0;
@@ -527,6 +482,5 @@ bool WIEGAND::DoWiegandConversion ()
 		    return false;
 	}
 	else
-		//Serial.print("Laço: tempo 25ms");
 		return false;
 }
